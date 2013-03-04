@@ -1,0 +1,16 @@
+###Project description goes here###
+
+Used frameworks and libs:
+
+Limonade PHP framework
+http://limonade-php.github.com
+
+Idiorm database toolkit for PHP
+http://j4mie.github.com/idiormandparis
+
+Currently used server software:
+
+PostgreSQL 9.1 (squeeze-backports)
+PHP 5.3.3 (squeeze)
+Apache 2.2.16 (squeeze)
+
