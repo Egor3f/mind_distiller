@@ -1,11 +1,13 @@
-Write nice and crisp project description
+Доработать описание проекта
 
-Make desicions about server software versions
+Определиться с открытой лицензией
 
-Make prototype:
-  Develop database structure
-  Write forms for
-    adding a question
-    answering questions
-    view users stats
+Определиться с используемыми версиями ПО
+
+Создать прототип:
+  Разработать структуру БД
+  Разработать интерфейс для
+    добавления вопроса
+    ответа по вопрос
+    просмотра статистики пользователей
 
