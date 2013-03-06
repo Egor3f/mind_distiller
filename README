@@ -12,10 +12,10 @@ mind_distiller - открытый движок для создания и упр
 
 Используемые фреймворки и библиотеки:
 
-Limonade PHP framework
+Limonade PHP framework (от 05.03.2013)
 http://limonade-php.github.com
 
-Idiorm database toolkit for PHP
+Idiorm database toolkit for PHP (от 05.03.2013)
 http://j4mie.github.com/idiormandparis
 
 Используемые версии серверного ПО:
