@@ -15,40 +15,39 @@ SET default_with_oids = false;
 
 -- Владельцем всех таблиц является служебная роль mind_distiller
 
--- Создать таблицу мнений и сменить владельца
+-- Создать таблицу мнений
 CREATE TABLE assessments (
-    user_id bigint,
-    assertion_id bigint,
-    assessment boolean,
-    interest real,
-    priority real,
-    tidy real,
-    mention text
+    user_id bigint, -- Ответивший пользователь
+    assertion_id bigint, -- Оценённое утверждение
+    assessment boolean, -- Согласие
+    interest real, -- Оценка интересности вопроса
+    priority real, -- Оценка важности вопроса
+    tidy real, -- Оценка постановки вопроса
+    mention text -- Комментарий
 );
 ALTER TABLE public.assessments OWNER TO mind_distiller;
+COMMENT ON TABLE assessments IS 'Таблица согласий и мнений';
 
--- Создать таблицу утверждений и сменить владельца
+-- Создать таблицу утверждений
 CREATE TABLE assertions (
     assertion_id bigint,
-    assertion text,
-    weight bigint
+    user_id int, -- Автор утверждения
+    assertion text, -- Текст утверждения
+    weight bigint  -- "Вес" утверждения для сортировки
 );
 ALTER TABLE public.assertions OWNER TO mind_distiller;
+COMMENT ON TABLE assertions IS 'Таблица утверждений';
 
--- Создать таблицу пользователей и сменить владельца
+-- Создать таблицу пользователей
 CREATE TABLE users (
-    user_id bigint,
-    username character varying[],
-    passwd character varying[]
+    user_id int,
+    username character varying[], -- Логин
+    passwd character varying[] -- Хэш пароля
 );
+COMMENT ON TABLE users IS 'Таблица пользователей';
 ALTER TABLE public.users OWNER TO mind_distiller;
 
--- Закомментировать таблицы
-COMMENT ON TABLE assessments IS 'Таблица согласий и мнений';
-COMMENT ON TABLE assertions IS 'Таблица утверждений';
-COMMENT ON TABLE users IS 'Таблица пользователей';
-
--- Принять данные с консоли
+-- Заполнение таблиц с консоли
 COPY assessments (user_id, assertion_id, assessment, interest, priority, tidy, mention) FROM stdin;
 \.
 COPY assertions (assertion_id, assertion, weight) FROM stdin;
