@@ -21,29 +21,24 @@ ORM::configure('return_result_sets', true);
 //Добавить проверку на коллизию имени
 function add_user($name, $pass)
 {
-    $user=ORM::for_table('users')->create();
-
-    //$user->username=$name;
-    //$user->passwd=md5($pass);
+    $new_user=ORM::for_table('users')->create();
     
-    $user->set(array(
-    'username'=>$name,
-    'passwd'=>md5($pass)
-    ));
+    $new_user->username=$name;
+    $new_user->passwd=md5($pass);
     
-    $user->save();
+    $new_user->save();
 }
 
 function add_assertion($creator_name, $text)
 {
     $creator=ORM::for_table('users')->where('username', $creator_name)->find_one();
 
-    $assertion=ORM::for_table('assertions')->create();
+    $new_assertion=ORM::for_table('assertions')->create();
+    
+    $new_assertion->user_id=$creator->user_id;
+    $new_assertion->text=$text;
 
-    $assertion->user_id=$creator->user_id;
-    $assertion->assertion=$text;
-
-    $assertion->save();
+    $new_assertion->save();
 }
 
 function add_assessment()
@@ -52,6 +47,8 @@ function add_assessment()
 
 //Отладка
 add_user('Tester', 'kolobok');
+echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
 add_assertion('Tester', 'Любите молочко?');
+echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
 
 ?>
