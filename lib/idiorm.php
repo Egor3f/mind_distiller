@@ -947,7 +947,6 @@
          * separated by commas. Eg "?, ?, ?"
          */
         protected function _create_placeholders($fields) {
-            echo "fields array:\n\n"; print_r($fields); echo "\n";
             if(!empty($fields)) {
                 $db_fields = array();
                 foreach($fields as $key => $value) {
@@ -1694,7 +1693,7 @@
             $query[] = "VALUES";
 
             $placeholders = $this->_create_placeholders($this->_dirty_fields);
-            $query[] = "('{$placeholders}')";
+            $query[] = "({$placeholders})";
 
             if (self::$_db[$this->_connection_name]->getAttribute(PDO::ATTR_DRIVER_NAME) == 'pgsql') {
                 $query[] = 'RETURNING ' . $this->_quote_identifier($this->_get_id_column_name());

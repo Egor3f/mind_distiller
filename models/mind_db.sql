@@ -15,10 +15,29 @@ SET default_with_oids = false;
 
 -- Владельцем всех таблиц является служебная роль mind_distiller
 
+-- Создать таблицу пользователей
+CREATE TABLE users (
+    user_id bigserial PRIMARY KEY,
+    username text, -- Логин
+    passwd text -- Хэш пароля
+);
+COMMENT ON TABLE users IS 'Таблица пользователей';
+ALTER TABLE public.users OWNER TO mind_distiller;
+
+-- Создать таблицу утверждений
+CREATE TABLE assertions (
+    assertion_id bigserial PRIMARY KEY,
+    user_id bigserial REFERENCES users (user_id), -- Автор утверждения
+    assertion text, -- Текст утверждения
+    weight bigint  -- "Вес" утверждения для сортировки
+);
+ALTER TABLE public.assertions OWNER TO mind_distiller;
+COMMENT ON TABLE assertions IS 'Таблица утверждений';
+
 -- Создать таблицу мнений
 CREATE TABLE assessments (
-    user_id bigint, -- Ответивший пользователь
-    assertion_id bigint, -- Оценённое утверждение
+    user_id bigserial REFERENCES users (user_id), -- Ответивший пользователь
+    assertion_id bigserial REFERENCES assertions (assertion_id), -- Оценённое утверждение
     assessment boolean, -- Согласие
     interest real, -- Оценка интересности вопроса
     priority real, -- Оценка важности вопроса
@@ -28,32 +47,15 @@ CREATE TABLE assessments (
 ALTER TABLE public.assessments OWNER TO mind_distiller;
 COMMENT ON TABLE assessments IS 'Таблица согласий и мнений';
 
--- Создать таблицу утверждений
-CREATE TABLE assertions (
-    assertion_id bigint,
-    user_id int, -- Автор утверждения
-    assertion text, -- Текст утверждения
-    weight bigint  -- "Вес" утверждения для сортировки
-);
-ALTER TABLE public.assertions OWNER TO mind_distiller;
-COMMENT ON TABLE assertions IS 'Таблица утверждений';
-
--- Создать таблицу пользователей
-CREATE TABLE users (
-    user_id int,
-    username character varying[], -- Логин
-    passwd character varying[] -- Хэш пароля
-);
-COMMENT ON TABLE users IS 'Таблица пользователей';
-ALTER TABLE public.users OWNER TO mind_distiller;
-
 -- Заполнение таблиц с консоли
+/*
 COPY assessments (user_id, assertion_id, assessment, interest, priority, tidy, mention) FROM stdin;
 \.
-COPY assertions (assertion_id, assertion, weight) FROM stdin;
+COPY assertions (assertion_id, user_id, assertion, weight) FROM stdin;
 \.
 COPY users (user_id, username, passwd) FROM stdin;
 \.
+*/
 
 -- Поправка привелегий
 REVOKE ALL ON SCHEMA public FROM PUBLIC;

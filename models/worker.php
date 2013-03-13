@@ -16,7 +16,6 @@ ORM::configure('logging', true);
 ORM::configure('return_result_sets', true);
 
 //ORM::get_last_query() - возвращает последний запрос
-//where_id_is('user_id')->
 
 //Добавить проверку на коллизию имени
 function add_user($name, $pass)
@@ -36,7 +35,7 @@ function add_assertion($creator_name, $text)
     $new_assertion=ORM::for_table('assertions')->create();
     
     $new_assertion->user_id=$creator->user_id;
-    $new_assertion->text=$text;
+    $new_assertion->assertion=$text;
 
     $new_assertion->save();
 }
@@ -46,9 +45,6 @@ function add_assessment()
 }
 
 //Отладка
-add_user('Tester', 'kolobok');
-echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
-add_assertion('Tester', 'Любите молочко?');
-echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
+//echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
 
 ?>
