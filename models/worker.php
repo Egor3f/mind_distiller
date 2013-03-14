@@ -8,7 +8,8 @@ ORM::configure('password', 'qwasdf');
 ORM::configure('id_column_overrides', array(
     'users'=>'user_id',
     'assertions'=>'assertion_id',
-    'assessments'=>'assertion_id'
+    'assessments'=>'assertion_id',
+    'rationales'=>'rationale_id'
     ));
 
 ORM::configure('logging', true);
@@ -31,12 +32,12 @@ function add_assertion($creator_name, $text)
     $new_assertion=ORM::for_table('assertions')->create();
     
     $new_assertion->user_id=$creator->user_id;
-    $new_assertion->assertion=$text;
+    $new_assertion->assertion_text=$text;
 
     $new_assertion->save();
 }
 
-function add_assessment($creator_name, $assertion, $assessment, $inter, $prior, $tidy, $ment)
+function add_assessment($creator_name, $assertion, $assessment, $inter, $prior, $tidy, $rat)
 {
     $creator=ORM::for_table('users')->where('username', $creator_name)->find_one();
     
@@ -48,7 +49,23 @@ function add_assessment($creator_name, $assertion, $assessment, $inter, $prior, 
     $new_assessment->interest=$inter;
     $new_assessment->priority=$prior;
     $new_assessment->tidy=$tidy;
-    if ((bool) $ment) $new_assessment->mention=$ment;
+    
+    if ((bool) $rat)
+    {
+        $new_rationale=ORM::for_table('rationales')->create();
+        
+        $new_rationale->user_id=$creator->user_id;
+        $new_rationale->assertion_id=$assertion;
+        $new_rationale->rationale_text=$rat;
+        
+        $new_rationale->save();
+        
+        $new_assessment->rationale_id=$new_rationale->id();
+    }
+    else
+    {
+        $new_assessment->rationale_id=1;
+    }
     
     $new_assessment->save();
 }
@@ -63,14 +80,15 @@ function get_user_assessments($user_name)
 }
 
 //Отладка
-/*
-//add_user('Tester', 'kolobok');
-//add_assertion('Tester', 'Любите молочко?');
-add_assessment('Tester', 2, 1, 0.6, 0.9, 1.0, 'Балдею с молока!');
-add_assessment('Tester', 2, 0, 0.1, 0.1, 0.1, 'Дрянь молоко ваше');
-$res=get_user_assessments('Tester');
+
+//add_user('User', '12345');
+//add_assertion('User', 'Любите молочко?');
+//add_assessment('User', 1, 1, 4, 4, 4, 'Балдею с молока!');
+//add_assessment('User', 1, 0, 0, 0, 1, 'Дрянь молоко ваше');
+//add_assessment('User', 1, 1, 1, 1, 1, '');
+//add_assessment('User', 1, 1, 1, 1, 1, '');
+$res=get_user_assessments('User');
 print_r($res);
-//echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
-*/
+echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
 
 ?>
