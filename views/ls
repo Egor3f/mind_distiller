@@ -1,0 +1,2 @@
+text = "<ul id=\"main-menu\"><li><a href=\"index.html\">Главная</a><li><a href=\"questions.html\">Вопросы</a><li><a href=\"stats.html\">Статистика</a><li><a href=\"addquestion.html\">Добавить вопрос</a><li><a href=\"login.html\">Вход</a></ul>"
+document.write(text);
