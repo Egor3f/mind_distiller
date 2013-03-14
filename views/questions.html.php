@@ -1,3 +1,4 @@
-<?php content_for('logo'); ?>
-<center>Добро пожаловать!</center>
-<?php end_content_for(); ?>
+Статистика
+<? foreach($posts as $post) :?>
+<p><?=print_r($post)?></p>
+<? endforeach?>

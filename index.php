@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/limonade.php';
+require_once 'models/worker.php';
 
 function before()
 {
@@ -13,7 +14,7 @@ dispatch('/', 'hello');
         return html('main.html.php');
     }
 
-   dispatch('/question', 'question');
+/*   dispatch('/question', 'question');
     function question()
     {
         return html('questions.html.php');
@@ -24,12 +25,14 @@ dispatch('/', 'hello');
     {
         return html('add_questions.html.php');
     }
-
-    dispatch('/all_question', 'all_questions');
+*/
+    dispatch('/question', 'all_questions');
     function all_questions()
     {
-        return html('all_questions.html.php');
+    	#set ('posts', get_user_assessments('User'));
+        return html('questions.html.php');
     }
+
 run();
 
 ?>

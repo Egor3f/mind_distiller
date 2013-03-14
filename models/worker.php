@@ -1,6 +1,6 @@
 <?php
 
-require_once '../lib/idiorm.php';
+require_once 'lib/idiorm.php';
 
 ORM::configure('pgsql:host=localhost;dbname=mind_db');
 ORM::configure('username', 'mind_distiller');
