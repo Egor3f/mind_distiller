@@ -79,16 +79,4 @@ function get_user_assessments($user_name)
     return $result;
 }
 
-//Отладка
-
-//add_user('User', '12345');
-//add_assertion('User', 'Любите молочко?');
-//add_assessment('User', 1, 1, 4, 4, 4, 'Балдею с молока!');
-//add_assessment('User', 1, 0, 0, 0, 1, 'Дрянь молоко ваше');
-//add_assessment('User', 1, 1, 1, 1, 1, '');
-//add_assessment('User', 1, 1, 1, 1, 1, '');
-$res=get_user_assessments('User');
-print_r($res);
-echo "Query:\n"; $lastq=ORM::get_last_query(); echo $lastq, "\n";
-
 ?>

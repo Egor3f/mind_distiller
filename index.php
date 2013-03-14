@@ -29,7 +29,7 @@ dispatch('/', 'hello');
     dispatch('/question', 'all_questions');
     function all_questions()
     {
-    	#set ('posts', get_user_assessments('User'));
+        set ('posts', get_user_assessments('User'));
         return html('questions.html.php');
     }
 
