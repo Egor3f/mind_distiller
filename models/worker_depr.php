@@ -1,13 +1,10 @@
 <?php
 
-require_once '../lib/idiorm.php';
-require_once '../lib/paris.php';
+require_once 'lib/idiorm.php';
 
 ORM::configure('pgsql:host=localhost;dbname=mind_db');
 ORM::configure('username', 'mind_distiller');
 ORM::configure('password', 'qwasdf');
-ORM::configure('logging', true);
-
 ORM::configure('id_column_overrides', array(
     'users'=>'user_id',
     'assertions'=>'assertion_id',
@@ -15,44 +12,7 @@ ORM::configure('id_column_overrides', array(
     'rationales'=>'rationale_id'
     ));
 
-class User extends Model
-{
-    public static $_table='users';
-    public static $_id_column='user_id';
-    
-    public function assertions()
-    {
-        return $this->has_many('Assertion');
-    }
-    
-    public function assessments()
-    {
-        return $this->has_many('Assessment');
-    }
-}
-
-class Assertion extends Model
-{
-    public static $_table='assertions';
-    public static $_id_column='assertion_id';
-}
-
-class Assessment extends Model
-{
-    public static $_table='assessments';
-    public static $_id_column='user_id';
-    
-    public function by_user()
-    {
-        return $this->belongs_to('User');
-    }
-}
-
-class Rationale extends Model
-{
-    public static $_table='rationales';
-    public static $_id_column='rationale_id';
-}
+ORM::configure('logging', true);
 
 //Добавить проверку на коллизию имени
 function add_user($name, $pass)
@@ -110,19 +70,13 @@ function add_assessment($creator_name, $assertion, $assessment, $inter, $prior, 
     $new_assessment->save();
 }
 
-//Принимает текстовое имя пользователя
-//Возвращает 
 function get_user_assessments($user_name)
 {
-    $user=Model::factory('User')->where('username', $user_name)->find_one();
-    echo $user->user_id;
+    $user=ORM::for_table('users')->where('username', $user_name)->find_one();
         
-    $result=$user->assessments()->find_array();
+    $result=ORM::for_table('assessments')->where('user_id', $user->user_id)->find_array();
     
     return $result;
 }
-
-
-print_r(get_user_assessments('User'));
 
 ?>
