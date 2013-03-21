@@ -6,28 +6,34 @@ require_once '../lib/paris.php';
 ORM::configure('pgsql:host=localhost;dbname=mind_db');
 ORM::configure('username', 'mind_distiller');
 ORM::configure('password', 'qwasdf');
-ORM::configure('logging', true);
-
-ORM::configure('id_column_overrides', array(
-    'users'=>'user_id',
-    'assertions'=>'assertion_id',
-    'assessments'=>'assertion_id',
-    'rationales'=>'rationale_id'
-    ));
+//ORM::configure('logging', true);
 
 class User extends Model
 {
     public static $_table='users';
     public static $_id_column='user_id';
     
+    
+    function __construct($name, $pass)
+    {
+	$this->username=$name;
+	$this->passwd=md5($pass);
+    }
+    
+
     public function assertions()
     {
-        return $this->has_many('Assertion');
+        return $this->has_many('Assertion', 'user_id');
     }
     
     public function assessments()
     {
-        return $this->has_many('Assessment');
+        return $this->has_many('Assessment', 'user_id');
+    }
+
+    public function rationales()
+    {
+	return $this->has_many('Rationale', 'user_id');
     }
 }
 
@@ -35,17 +41,20 @@ class Assertion extends Model
 {
     public static $_table='assertions';
     public static $_id_column='assertion_id';
+
+    /*
+    function __construct($creator, $text)
+    {
+	$this->user_id=$creator->user_id;
+	$this->assertion_text=$text;
+    }
+    */
 }
 
 class Assessment extends Model
 {
     public static $_table='assessments';
     public static $_id_column='user_id';
-    
-    public function by_user()
-    {
-        return $this->belongs_to('User');
-    }
 }
 
 class Rationale extends Model
@@ -54,75 +63,19 @@ class Rationale extends Model
     public static $_id_column='rationale_id';
 }
 
-//Добавить проверку на коллизию имени
-function add_user($name, $pass)
-{
-    $new_user=ORM::for_table('users')->create();
-    
-    $new_user->username=$name;
-    $new_user->passwd=md5($pass);
-    
-    $new_user->save();
-}
+//Тестирование
+$new_user=Model::factory('User')->create();
+$new_user->username='Tester';
+$new_user->passwd=md5('kkk');
+$new_user->save();
 
-function add_assertion($creator_name, $text)
-{
-    $creator=ORM::for_table('users')->where('username', $creator_name)->find_one();
+$new_assertion=Model::factory('Assertion')->create();
+$new_assertion->user_id=$new_user->user_id;
+$new_assertion->assertion_text='Хорошо поёт Киркоров?';
+$new_assertion->save();
 
-    $new_assertion=ORM::for_table('assertions')->create();
-    
-    $new_assertion->user_id=$creator->user_id;
-    $new_assertion->assertion_text=$text;
-
-    $new_assertion->save();
-}
-
-function add_assessment($creator_name, $assertion, $assessment, $inter, $prior, $tidy, $rat)
-{
-    $creator=ORM::for_table('users')->where('username', $creator_name)->find_one();
-    
-    $new_assessment=ORM::for_table('assessments')->create();
-    
-    $new_assessment->user_id=$creator->user_id;
-    $new_assessment->assertion_id=$assertion;  
-    $assessment ? $new_assessment->assessment=1 : $new_assessment->assessment=0;
-    $new_assessment->interest=$inter;
-    $new_assessment->priority=$prior;
-    $new_assessment->tidy=$tidy;
-    
-    if ((bool) $rat)
-    {
-        $new_rationale=ORM::for_table('rationales')->create();
-        
-        $new_rationale->user_id=$creator->user_id;
-        $new_rationale->assertion_id=$assertion;
-        $new_rationale->rationale_text=$rat;
-        
-        $new_rationale->save();
-        
-        $new_assessment->rationale_id=$new_rationale->id();
-    }
-    else
-    {
-        $new_assessment->rationale_id=1;
-    }
-    
-    $new_assessment->save();
-}
-
-//Принимает текстовое имя пользователя
-//Возвращает 
-function get_user_assessments($user_name)
-{
-    $user=Model::factory('User')->where('username', $user_name)->find_one();
-    echo $user->user_id;
-        
-    $result=$user->assessments()->find_array();
-    
-    return $result;
-}
-
-
-print_r(get_user_assessments('User'));
+$user=Model::factory('User')->where('username', 'Tester')->find_one();
+$result=$user->assertions()->find_array();
+print_r($result);
 
 ?>
