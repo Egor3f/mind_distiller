@@ -1,13 +1,13 @@
 		<center>
 			<h1>Вход</h1>
-			<form id="login" action="login.php" method="post">
+			<form id="login" action="<?=url_for('login')?>" method="post">
 				<table>
 				<tr>
 					<td>
 				<label>Логин:</label>
 			</td>
 			<td>
-				<input type="text" name='username' id='username' maxlength="16" /><br>
+				<input type="text" name='username' id='username' maxlength="50" /><br>
 			</td>
 			<tr>
 				<td>

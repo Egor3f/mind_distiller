@@ -1,12 +1,5 @@
 <?php
 
-require_once '../lib/idiorm.php';
-require_once '../lib/paris.php';
-
-ORM::configure('pgsql:host=localhost;dbname=mind_db');
-ORM::configure('username', 'mind_distiller');
-ORM::configure('password', 'qwasdf');
-//ORM::configure('logging', true);
 
 class User extends Model
 {
@@ -62,7 +55,7 @@ class Rationale extends Model
     public static $_table='rationales';
     public static $_id_column='rationale_id';
 }
-
+/*
 //Тестирование
 $new_user=Model::factory('User')->create();
 $new_user->username='Tester';
@@ -77,5 +70,5 @@ $new_assertion->save();
 $user=Model::factory('User')->where('username', 'Tester')->find_one();
 $result=$user->assertions()->find_array();
 print_r($result);
-
+*/
 ?>
