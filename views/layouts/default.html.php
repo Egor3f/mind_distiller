@@ -5,9 +5,11 @@
 
 <link rel="stylesheet" type="text/css" href="views/css/style.css" />
 <body>
+    <?if(isset($logo)):?>
     <div id="logo">
         <?=$logo;?>
     </div>
+    <?endif?>
     <div id="navigation">
 	<ul id="main-menu">
             <li><a href="<?=url_for('')?>">Главная</a></li>
