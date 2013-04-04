@@ -5,14 +5,6 @@ class User extends Model
 {
     public static $_table='users';
     public static $_id_column='user_id';
-    
-    
-    function __construct($name, $pass)
-    {
-	$this->username=$name;
-	$this->passwd=md5($pass);
-    }
-    
 
     public function assertions()
     {
@@ -34,14 +26,6 @@ class Assertion extends Model
 {
     public static $_table='assertions';
     public static $_id_column='assertion_id';
-
-    /*
-    function __construct($creator, $text)
-    {
-	$this->user_id=$creator->user_id;
-	$this->assertion_text=$text;
-    }
-    */
 }
 
 class Assessment extends Model

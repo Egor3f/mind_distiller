@@ -3,14 +3,13 @@ error_reporting(E_ALL);
 ini_set ('display_errors', true);
 
 require_once 'lib/limonade.php';
-#require_once 'configure.php';
-#require_once 'models/worker.php';
+require_once 'configure.php';
+require_once 'models/worker.php';
 
 function before()
 {
-    $user_id = isset($_SESSION['user_id'])? $_SESSION['user_id'] : null;
+    set('user',$_SESSION['user']);
     layout('layouts/default.html.php');
-    #if (! $user_id && !isset($) ) redirect('login');
 }
 
 dispatch ('login', function(){
@@ -24,8 +23,24 @@ dispatch('/', function() {
 dispatch_post('login', function(){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    flash('Добро пожаловать!','Рады видеть Вас снова!');   
-    return $username . ":" . $password;
+    $user = Model::factory('User')
+        ->where('username',$username)
+        ->where('passwd',md5($password))
+        ->find_one();
+    echo ORM::get_last_query();
+    $_SESSION['user'] = $user;
+    if ($user) {
+        flash('Добро пожаловать!','Рады видеть Вас снова!');
+        redirect('/');
+    } else { 
+        flash('Неправельный пароль или имя пользователя');
+        redirect('/login');
+    }
+});
+
+dispatch('logout', function(){
+    $_SESSION['user']=null;
+    redirect('/');
 });
 /*   dispatch('/question', 'question');
     function question()
