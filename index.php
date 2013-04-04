@@ -46,7 +46,6 @@ dispatch('logout', function(){
 
 dispatch('assertions', function(){
     $user = User::getInstance() or redirect('/login');
-    if (!$user) redirect('/login');
     $assertions = $user->assertions()->find_many();
     return html('assertions.html.php');
 });
