@@ -47,7 +47,22 @@ dispatch('logout', function(){
 dispatch('assertions', function(){
     $user = User::getInstance() or redirect('/login');
     $assertions = $user->assertions()->find_many();
+    set('assertions',$assertions);
     return html('assertions.html.php');
+});
+
+dispatch('add_assertion',function(){
+    $user = User::getInstance() or redirect('/login');
+    return html('add_assertion.html.php');
+});
+
+dispatch_post('add_assertion',function(){
+    $user = User::getInstance() or redirect('/login');
+    $assertion = Model::factory('Assertion')->create();
+    $assertion->assertion_text = $_POST['assertion_text'];
+    $assertion->user_id=$user->user_id;
+    $assertion->save();
+    redirect('/assertions');
 });
 /*   dispatch('/question', 'question');
     function question()
