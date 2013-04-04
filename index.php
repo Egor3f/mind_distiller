@@ -6,7 +6,6 @@ require_once 'lib/limonade.php';
 require_once 'configure.php';
 require_once 'models/worker.php';
 
-$user=option('user');
 function before()
 {
     option('user',$_SESSION['user']);
@@ -46,6 +45,7 @@ dispatch('logout', function(){
 });
 
 dispatch('assertions', function(){
+    $user = User::getInstance() or redirect('/login');
     if (!$user) redirect('/login');
     $assertions = $user->assertions()->find_many();
     return html('assertions.html.php');

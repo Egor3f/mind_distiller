@@ -6,6 +6,10 @@ class User extends Model
     public static $_table='users';
     public static $_id_column='user_id';
 
+    public static function getInstance(){
+        return $user = option('user');
+    }
+
     public function assertions()
     {
         return $this->has_many('Assertion', 'user_id');
