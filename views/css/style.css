@@ -2,7 +2,7 @@
 		list-style: none;
 		padding: 0;
 		margin: 0 auto;
-		width: 60%;
+		width: 50%;
 		height: 10%;
 		overflow: hidden;
 		position: relative;
@@ -25,9 +25,9 @@
 
 	.news{
 		float: left;
-		width: 50%;
-		height: 90%;
-		background: orange;
+		width: 30%;
+		height: 50%;
+		background: gray;
 		color: #000;
 	}
 	.login{

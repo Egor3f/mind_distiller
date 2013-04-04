@@ -21,8 +21,6 @@
 	<ul id="main-menu">
             <li><a href="<?=url_for('')?>">Главная</a></li>
             <li><a href="<?=url_for('assertions')?>">Утверждения</a></li>
-            <li><a href="<?=url_for('all_questions')?>">Статистика</a></li>
-            <li><a href="<?=url_for('add_question')?>">Добавить вопрос</a></li>
             <?if($user):?>
                 <li><a href="<?=url_for('logout')?>">Выход</a></li>
             <?else:?>
