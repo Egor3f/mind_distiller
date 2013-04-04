@@ -8,6 +8,7 @@ require_once 'models/worker.php';
 
 function before()
 {
+    option('user',$_SESSION['user']);
     set('user',$_SESSION['user']);
     layout('layouts/default.html.php');
 }
@@ -41,6 +42,13 @@ dispatch_post('login', function(){
 dispatch('logout', function(){
     $_SESSION['user']=null;
     redirect('/');
+});
+
+dispatch('assertions', function(){
+    $user=option('user');
+    if (!$user) redirect('/login');
+    $assertions = $user->assertions()->find_many();
+    return html('assertions.html.php');
 });
 /*   dispatch('/question', 'question');
     function question()
