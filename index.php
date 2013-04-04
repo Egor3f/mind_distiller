@@ -6,6 +6,7 @@ require_once 'lib/limonade.php';
 require_once 'configure.php';
 require_once 'models/worker.php';
 
+$user=option('user');
 function before()
 {
     option('user',$_SESSION['user']);
@@ -31,10 +32,10 @@ dispatch_post('login', function(){
     echo ORM::get_last_query();
     $_SESSION['user'] = $user;
     if ($user) {
-        flash('Добро пожаловать!','Рады видеть Вас снова!');
+        flash('Сообщение','Рады видеть Вас снова!');
         redirect('/');
     } else { 
-        flash('Неправельный пароль или имя пользователя');
+        flash('Ошибка','Неправильный пароль или имя пользователя');
         redirect('/login');
     }
 });
@@ -45,7 +46,6 @@ dispatch('logout', function(){
 });
 
 dispatch('assertions', function(){
-    $user=option('user');
     if (!$user) redirect('/login');
     $assertions = $user->assertions()->find_many();
     return html('assertions.html.php');

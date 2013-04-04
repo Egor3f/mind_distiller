@@ -5,6 +5,13 @@
 
 <link rel="stylesheet" type="text/css" href="views/css/style.css" />
 <body>
+    <div class="flash">
+        <? foreach($flash as $type => $message): ?>
+            <? if (true || $type == 'Ошибка' || $type == 'Уведомление'): ?>
+                <p><?= $message ?></p>
+            <? endif ?>
+        <? endforeach ?>
+    </div>
     <?if(isset($logo)):?>
     <div id="logo">
         <?=$logo;?>
