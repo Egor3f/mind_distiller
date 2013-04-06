@@ -66,6 +66,12 @@ dispatch_post('add_assertion',function(){
     redirect('/assertions');
 });
 
+
+dispatch_get('invitations',function(){
+    $user = User::getInstance() or redirect('/login');
+    return html('invitations.html.php');
+});
+
 run();
 
 ?>
