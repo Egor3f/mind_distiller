@@ -60,6 +60,22 @@ CREATE TABLE assessments (
 ALTER TABLE public.assessments OWNER TO mind_distiller;
 COMMENT ON TABLE assessments IS 'Таблица оценок';
 
+-- Создать таблицу приглашений
+DROP TABLE IF EXISTS invitations;
+CREATE TABLE invitations (
+    user_id bigserial REFERENCES users (user_id), -- Автор приглашения
+    new_user_id bigserial REFERENCES users (user_id), -- Пользователь, зарегистрировавшийся в ответ на приглашение
+    invitation_key text, -- случайный ключ для ссылки в письме-приглашении
+    invitation_brief text, -- краткий текст приглашения
+    invitation_text text, -- подробное описание приглашения
+    email text, -- почтовый адрес по которому будет отправлено приглашение
+    invitation_timestamp timestamp default now() -- дата создания(отправки) приглашения
+);
+ALTER TABLE public.invitations OWNER TO mind_distiller;
+COMMENT ON TABLE invitations IS 'Таблица приглашений';
+
+
+
 -- Поправка привелегий
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA public FROM mind_distiller;
