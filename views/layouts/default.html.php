@@ -21,6 +21,7 @@
 	<ul id="main-menu">
             <li><a href="<?=url_for('')?>">Главная</a></li>
             <li><a href="<?=url_for('assertions')?>">Утверждения</a></li>
+            <li><a href="<?=url_for('invitations')?>">Приглашения</a></li>
             <?if($user):?>
                 <li><a href="<?=url_for('logout')?>">Выход</a></li>
             <?else:?>
