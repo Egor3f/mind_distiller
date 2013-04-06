@@ -8,8 +8,9 @@ require_once 'models/worker.php';
 
 function before()
 {
-    option('user',$_SESSION['user']);
-    set('user',$_SESSION['user']);
+    $user = isset($_SESSION['user']) ? $_SESSION['user'] : false;
+    option('user',$user);
+    set('user',$user);
     layout('layouts/default.html.php');
 }
 
