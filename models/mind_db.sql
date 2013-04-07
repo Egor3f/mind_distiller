@@ -15,6 +15,12 @@ SET default_with_oids = false;
 
 -- Владельцем всех таблиц является служебная роль mind_distiller
 
+DROP TABLE IF EXISTS invitations;
+DROP TABLE IF EXISTS assessments;
+DROP TABLE IF EXISTS rationales;
+DROP TABLE IF EXISTS assertions;
+DROP TABLE IF EXISTS users;
+
 -- Создать таблицу пользователей
 CREATE TABLE users (
     user_id bigserial PRIMARY KEY,
@@ -28,7 +34,7 @@ INSERT INTO users (username, passwd) VALUES ('NULL', '*');
 -- Создать таблицу утверждений
 CREATE TABLE assertions (
     assertion_id bigserial PRIMARY KEY,
-    user_id bigserial REFERENCES users (user_id), -- Автор утверждения
+    user_id bigint REFERENCES users (user_id), -- Автор утверждения
     assertion_text text, -- Текст утверждения
     weight bigint  -- "Вес" утверждения для сортировки
 );
@@ -39,8 +45,8 @@ INSERT INTO assertions (user_id, assertion_text) VALUES (1, 'NULL');
 -- Создать таблицу обоснований
 CREATE TABLE rationales (
     rationale_id bigserial PRIMARY KEY,
-    user_id bigserial REFERENCES users (user_id), -- Автор обоснования
-    assertion_id bigserial REFERENCES assertions (assertion_id), -- Утверждение
+    user_id bigint REFERENCES users (user_id), -- Автор обоснования
+    assertion_id bigint REFERENCES assertions (assertion_id), -- Утверждение
     rationale_text text -- Обоснование
 );
 ALTER TABLE public.rationales OWNER TO mind_distiller;
@@ -49,8 +55,9 @@ INSERT INTO rationales (user_id, assertion_id, rationale_text) VALUES (1, 1, 'NU
 
 -- Создать таблицу оценок
 CREATE TABLE assessments (
-    user_id bigserial REFERENCES users (user_id), -- Автор оценки
-    assertion_id bigserial REFERENCES assertions (assertion_id), -- Оценённое утверждение
+    assessment_id bigserial PRIMARY KEY,
+    user_id bigint REFERENCES users (user_id), -- Автор оценки
+    assertion_id bigint REFERENCES assertions (assertion_id), -- Оценённое утверждение
     assessment boolean, -- Согласие
     interest smallint, -- Оценка интересности вопроса
     priority smallint, -- Оценка важности вопроса
@@ -61,10 +68,10 @@ ALTER TABLE public.assessments OWNER TO mind_distiller;
 COMMENT ON TABLE assessments IS 'Таблица оценок';
 
 -- Создать таблицу приглашений
-DROP TABLE IF EXISTS invitations;
 CREATE TABLE invitations (
-    user_id bigserial REFERENCES users (user_id), -- Автор приглашения
-    new_user_id bigserial REFERENCES users (user_id), -- Пользователь, зарегистрировавшийся в ответ на приглашение
+    invitation_id bigserial PRIMARY KEY,
+    user_id bigint REFERENCES users (user_id), -- Автор приглашения
+    new_user_id bigint REFERENCES users (user_id), -- Пользователь, зарегистрировавшийся в ответ на приглашение
     invitation_key text, -- случайный ключ для ссылки в письме-приглашении
     invitation_brief text, -- краткий текст приглашения
     invitation_text text, -- подробное описание приглашения
