@@ -66,11 +66,23 @@ dispatch_post('add_assertion',function(){
     redirect('/assertions');
 });
 
-
 dispatch_get('invitations',function(){
     $user = User::getInstance() or redirect('/login');
     set('invitations',$user->invitations()->find_many());
     return html('invitations.html.php');
+});
+
+dispatch_post('invitation',function(){
+    $user = User::getInstance() or redirect('/login');
+    $key=md5(time()+mt_rand());
+    $new_inv = Model::factory('Invitation')->create();
+    $new_inv->email=$_POST['email'];
+    $new_inv->invitation_brief=$_POST['invitation_brief'];
+    $new_inv->invitation_text=$_POST['invitation_text'];
+    $new_inv->invitation_key=$key;
+    $new_inv->user_id=$user->user_id;
+    $new_inv->save();
+    redirect('/invitations');
 });
 
 run();
