@@ -69,6 +69,7 @@ dispatch_post('add_assertion',function(){
 
 dispatch_get('invitations',function(){
     $user = User::getInstance() or redirect('/login');
+    set('invitations',$user->invitations()->find_many());
     return html('invitations.html.php');
 });
 

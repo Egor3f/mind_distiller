@@ -23,6 +23,11 @@ class User extends Model
     {
 	return $this->has_many('Rationale', 'user_id');
     }
+
+    public function invitations()
+    {
+        return $this->has_many('Invitation','user_id');
+    }
 }
 
 class Assertion extends Model
@@ -41,6 +46,12 @@ class Rationale extends Model
 {
     public static $_table='rationales';
     public static $_id_column='rationale_id';
+}
+
+class Invitation extends Model
+{
+    public static $_table='invitations';
+    public static $_id_column='invitation_id';
 }
 
 ?>
