@@ -5,7 +5,8 @@ class User extends Model
     public static $_table='users';
     public static $_id_column='user_id';
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         return $user = option('user');
     }
 
@@ -21,7 +22,7 @@ class User extends Model
 
     public function rationales()
     {
-	return $this->has_many('Rationale', 'user_id');
+        return $this->has_many('Rationale', 'user_id');
     }
 
     public function invitations()
@@ -34,6 +35,11 @@ class Assertion extends Model
 {
     public static $_table='assertions';
     public static $_id_column='assertion_id';
+    
+    public function assessments()
+    {
+        return $this->has_many('Assessment', 'assertion_id');
+    }
 }
 
 class Assessment extends Model

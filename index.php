@@ -52,12 +52,12 @@ dispatch('assertions', function(){
     return html('assertions.html.php');
 });
 
-dispatch('add_assertion',function(){
+dispatch('add_assertion', function(){
     $user = User::getInstance() or redirect('/login');
     return html('add_assertion.html.php');
 });
 
-dispatch_post('add_assertion',function(){
+dispatch_post('add_assertion', function(){
     $user = User::getInstance() or redirect('/login');
     $assertion = Model::factory('Assertion')->create();
     $assertion->assertion_text = $_POST['assertion_text'];
@@ -66,13 +66,30 @@ dispatch_post('add_assertion',function(){
     redirect('/assertions');
 });
 
-dispatch_get('invitations',function(){
+dispatch('assessments', function(){
+    $user = User::getInstance() or redirect('/login');
+    set('assessments', $user->assessments()->find_many());
+    return html('assessments.html.php');
+});
+
+dispatch('add_assessment', function(){
+    $user = User::getInstance() or redirect('/login');
+    return html('add_assessment.html.php');
+});
+
+dispatch_post('add_assessment', function(){
+    $user = User::getInstance() or redirect('/login');
+    
+    redirect('/assessments');
+});
+
+dispatch_get('invitations', function(){
     $user = User::getInstance() or redirect('/login');
     set('invitations',$user->invitations()->find_many());
     return html('invitations.html.php');
 });
 
-dispatch_post('invitation',function(){
+dispatch_post('invitation', function(){
     $user = User::getInstance() or redirect('/login');
     $key=md5(time()+mt_rand());
     $new_inv = Model::factory('Invitation')->create();

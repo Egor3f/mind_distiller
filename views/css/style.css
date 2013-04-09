@@ -2,8 +2,8 @@
 		list-style: none;
 		padding: 0;
 		margin: 0 auto;
-		width: 50%;
-		height: 10%;
+		width: 80%;
+		height: 8%;
 		overflow: hidden;
 		position: relative;
 	}
@@ -19,15 +19,15 @@
 	}
 	#main-menu a:hover{
 		color: #000;
-		background: #dddddd;
+		background: #DDDDFF;
 
 	}
 
 	.news{
 		float: left;
-		width: 30%;
+		width: 50%;
 		height: 50%;
-		background: gray;
+		background: #DDDDFF;
 		color: #000;
 	}
 	.login{
