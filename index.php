@@ -72,8 +72,9 @@ dispatch('assessments', function(){
     return html('assessments.html.php');
 });
 
-dispatch('add_assessment', function(){
+dispatch('add_assessment/:assertion_id', function(){
     $user = User::getInstance() or redirect('/login');
+    set('assertion_id',params('assertion_id'));
     return html('add_assessment.html.php');
 });
 
