@@ -12,16 +12,14 @@
             <? endif ?>
         <? endforeach ?>
     </div>
-    <?if(isset($logo)):?>
-    <div id="logo">
-        <?=$logo;?>
+  
+    <div id="logo" align="center">
+     <img src="views/img/logo.png">
     </div>
-    <?endif?>
-    <div id="navigation">
+    <div id="navigation" width=100%>
 	<ul id="main-menu">
             <li><a href="<?=url_for('')?>">Главная</a></li>
             <li><a href="<?=url_for('assertions')?>">Утверждения</a></li>
-            <li><a href="<?=url_for('invitations')?>">Приглашения</a></li>
             <?if($user):?>
                 <li><a href="<?=url_for('logout')?>">Выход</a></li>
             <?else:?>
@@ -29,9 +27,9 @@
             <?endif?>
 	</ul>
     </div>
-
+    
     <? if (isset($news)):?>
-        <div class="news" width=50%>
+        <div class="news">
             <?= $news; ?>
         </div>
     <?endif?>
@@ -41,8 +39,15 @@
             <?= $login; ?>
         </div>
     <?endif?>
-
-    <div id="content">
+    
+    <? if (isset($latest_assertions)):?>
+        <div class="latest_assertions">
+            <?= $latest_assertions; ?>
+        </div>
+    <?endif?>
+    
+    <div id="content" width=100%>
         <?= $content; ?>
     </div>
+
 </body>

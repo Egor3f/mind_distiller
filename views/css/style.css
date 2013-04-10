@@ -1,8 +1,9 @@
 	#main-menu{
+		float:center;
 		list-style: none;
 		padding: 0;
 		margin: 0 auto;
-		width: 50%;
+		width: 60%;
 		height: 10%;
 		overflow: hidden;
 		position: relative;
@@ -10,29 +11,45 @@
 
 	#main-menu li{
 		float: left;
-		padding: 0 20px;
+		padding: 0px 20px;
 		margin: 0;
-		position: relative;
+		position: relative;	
 	}
 	#main-menu a:link{
-		color: #000;
+		color: #000;	
+		display: block;
+		text-align:center;
+		height: 2em;
+		width: 14em;
+		text-decoration: none;
+		line-height:2em;
 	}
 	#main-menu a:hover{
 		color: #000;
-		background: #dddddd;
-
+		background: #e76c6c;	
 	}
 
 	.news{
 		float: left;
-		width: 30%;
+		width: 33%;
 		height: 50%;
-		background: gray;
 		color: #000;
 	}
+	.news:hover{
+	background: grey;
+	}
 	.login{
+		
 		color: #000;
 	}
 	.login label{
 		color: #000;
+	}
+	.latest_assertions{
+	float: right;
+	width: 33%;
+	height: 50%;
+	}
+	.latest_assertions:hover{
+	background: grey;
 	}

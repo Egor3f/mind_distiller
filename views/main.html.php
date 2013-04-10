@@ -6,10 +6,7 @@
 Текущий пользователь
 <?php end_content_for(); ?>
 
-<?php content_for('logo'); ?>
-Лого
+<?php content_for('latest_assertions'); ?>
+Последние утверждения
 <?php end_content_for(); ?>
 
-<?php content_for('navigation'); ?>
-<script src="views/js/loadmenu.js"></script>
-<?php end_content_for(); ?>
