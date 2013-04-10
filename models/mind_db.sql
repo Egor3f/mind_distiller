@@ -62,7 +62,7 @@ CREATE TABLE assessments (
     interest smallint, -- Оценка интересности вопроса
     priority smallint, -- Оценка важности вопроса
     tidy smallint, -- Оценка постановки вопроса
-    rationale_id bigserial REFERENCES rationales (rationale_id) -- Обоснование
+    rationale_id bigint REFERENCES rationales (rationale_id) -- Обоснование
 );
 ALTER TABLE public.assessments OWNER TO mind_distiller;
 COMMENT ON TABLE assessments IS 'Таблица оценок';
