@@ -1,6 +1,11 @@
-<a href="<?=url_for('add_assessment')?>">Добавить оценку</a>
-<?foreach($assessments as $assessment): ?>
-<p><b><?=($assessment->assessment ? 'Согласен' : 'Не согласен')?></b></p>
+<?foreach($assessments as $assessment):?>
+<p>
+<span style="color:#BBBBFF">
+<?$assertion = Model::factory('Assertion')->find_one($assessment->assertion_id);
+  echo $assertion->assertion_text;?>
+</span><br>
+<b><?=($assessment->assessment ? 'Согласен' : 'Не согласен')?></b>
+</p>
 <p> 
 Интерес: <?=$assessment->interest?><br>
 Важность: <?=$assessment->priority?><br>

@@ -79,7 +79,27 @@ dispatch('add_assessment', function(){
 
 dispatch_post('add_assessment', function(){
     $user = User::getInstance() or redirect('/login');
-    
+    $assessment = Model::factory('Assessment')->create();
+    $assessment->assessment=$_POST['assess_flag'];
+    $assessment->interest=$_POST['assess_interest'];
+    $assessment->priority=$_POST['assess_priority'];
+    $assessment->tidy=$_POST['assess_tidy'];
+    $assessment->user_id=$user->user_id;
+    $assessment->assertion_id=$_POST['assertion_id'];
+    if ($_POST['rationale_text'])
+    {
+        $rationale = Model::factory('Rationale')->create();
+        $rationale->rationale_text=$_POST['rationale_text'];
+        $rationale->user_id=$user->user_id;
+        $rationale->assertion_id=$_POST['assertion_id'];
+        $rationale->save();
+        $assessment->rationale_id=$rationale->rationale_id;
+    }
+    else
+    {
+        $assessment->rationale_id=1;
+    }
+    $assessment->save();
     redirect('/assessments');
 });
 
