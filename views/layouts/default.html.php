@@ -14,7 +14,7 @@
     </div>
   
     <div id="logo" align="center">
-     <img src="views/img/logo.png">
+     <a href="<?=url_for('')?>"><img src="views/img/logo.png"></a> 
     </div>
     <div id="navigation" width=100%>
 	<ul id="main-menu">
