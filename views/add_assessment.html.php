@@ -1,4 +1,5 @@
 <form method="post" action="<?=url_for('add_assessment')?>">
+<<<<<<< HEAD
 <input type="hidden" name="assertion_id" value="<?=$assertion_id?>"><br>
 <table>
 <tr>
