@@ -69,6 +69,7 @@ dispatch_post('add_assertion', function(){
 dispatch('assessments', function(){
     $user = User::getInstance() or redirect('/login');
     set('assessments', $user->assessments()->find_many());
+    set('user', $user);
     return html('assessments.html.php');
 });
 
@@ -81,7 +82,7 @@ dispatch('add_assessment/:assertion_id', function(){
 dispatch_post('add_assessment', function(){
     $user = User::getInstance() or redirect('/login');
     $assessment = Model::factory('Assessment')->create();
-    $assessment->assessment=$_POST['assess_flag'];
+    $assessment->assessment=$_POST['assess_agree'];
     $assessment->interest=$_POST['assess_interest'];
     $assessment->priority=$_POST['assess_priority'];
     $assessment->tidy=$_POST['assess_tidy'];

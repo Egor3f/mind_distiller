@@ -58,7 +58,7 @@ CREATE TABLE assessments (
     assessment_id bigserial PRIMARY KEY,
     user_id bigint REFERENCES users (user_id), -- Автор оценки
     assertion_id bigint REFERENCES assertions (assertion_id), -- Оценённое утверждение
-    assessment boolean, -- Согласие
+    assessment smallint, -- Степень согласия
     interest smallint, -- Оценка интересности вопроса
     priority smallint, -- Оценка важности вопроса
     tidy smallint, -- Оценка постановки вопроса
@@ -76,12 +76,10 @@ CREATE TABLE invitations (
     invitation_brief text, -- краткий текст приглашения
     invitation_text text, -- подробное описание приглашения
     email text, -- почтовый адрес по которому будет отправлено приглашение
-    invitation_timestamp timestamp default now() -- дата создания(отправки) приглашения
+    invitation_timestamp timestamp DEFAULT now() -- дата создания(отправки) приглашения
 );
 ALTER TABLE public.invitations OWNER TO mind_distiller;
 COMMENT ON TABLE invitations IS 'Таблица приглашений';
-
-
 
 -- Поправка привелегий
 REVOKE ALL ON SCHEMA public FROM PUBLIC;

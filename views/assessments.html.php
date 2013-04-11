@@ -4,7 +4,7 @@
 <?$assertion = Model::factory('Assertion')->find_one($assessment->assertion_id);
   echo $assertion->assertion_text;?>
 </span><br>
-<b><?=($assessment->assessment ? 'Согласен' : 'Не согласен')?></b>
+<b><?=($user->assess_agree[$assessment->assessment])?></b>
 </p>
 <p> 
 Интерес: <?=$assessment->interest?><br>

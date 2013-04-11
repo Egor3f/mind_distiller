@@ -4,6 +4,7 @@ class User extends Model
 {
     public static $_table='users';
     public static $_id_column='user_id';
+    public $assess_agree=array('Не согласен', 'Частично согласен', 'Согласен');
 
     public static function getInstance()
     {
