@@ -29,7 +29,6 @@
             <?endif?>
 	</ul>
     </div>
-  <div class="contents">
     <? if (isset($news)):?>
         <div class="news">
             <?= $news; ?>
@@ -47,9 +46,7 @@
             <?= $latest_assertions; ?>
         </div>
     <?endif?>
-    
     <div id="content" width=100%>
         <?= $content; ?>
     </div>
-</div>
 </body>

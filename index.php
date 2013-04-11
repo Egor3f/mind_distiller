@@ -52,12 +52,12 @@ dispatch('assertions', function(){
     return html('assertions.html.php');
 });
 
-dispatch('add_assertion',function(){
+dispatch('add_assertion', function(){
     $user = User::getInstance() or redirect('/login');
     return html('add_assertion.html.php');
 });
 
-dispatch_post('add_assertion',function(){
+dispatch_post('add_assertion', function(){
     $user = User::getInstance() or redirect('/login');
     $assertion = Model::factory('Assertion')->create();
     $assertion->assertion_text = $_POST['assertion_text'];
@@ -66,13 +66,51 @@ dispatch_post('add_assertion',function(){
     redirect('/assertions');
 });
 
-dispatch_get('invitations',function(){
+dispatch('assessments', function(){
+    $user = User::getInstance() or redirect('/login');
+    set('assessments', $user->assessments()->find_many());
+    return html('assessments.html.php');
+});
+
+dispatch('add_assessment/:assertion_id', function(){
+    $user = User::getInstance() or redirect('/login');
+    set('assertion_id',params('assertion_id'));
+    return html('add_assessment.html.php');
+});
+
+dispatch_post('add_assessment', function(){
+    $user = User::getInstance() or redirect('/login');
+    $assessment = Model::factory('Assessment')->create();
+    $assessment->assessment=$_POST['assess_flag'];
+    $assessment->interest=$_POST['assess_interest'];
+    $assessment->priority=$_POST['assess_priority'];
+    $assessment->tidy=$_POST['assess_tidy'];
+    $assessment->user_id=$user->user_id;
+    $assessment->assertion_id=$_POST['assertion_id'];
+    if ($_POST['rationale_text'])
+    {
+        $rationale = Model::factory('Rationale')->create();
+        $rationale->rationale_text=$_POST['rationale_text'];
+        $rationale->user_id=$user->user_id;
+        $rationale->assertion_id=$_POST['assertion_id'];
+        $rationale->save();
+        $assessment->rationale_id=$rationale->rationale_id;
+    }
+    else
+    {
+        $assessment->rationale_id=1;
+    }
+    $assessment->save();
+    redirect('/assessments');
+});
+
+dispatch_get('invitations', function(){
     $user = User::getInstance() or redirect('/login');
     set('invitations',$user->invitations()->find_many());
     return html('invitations.html.php');
 });
 
-dispatch_post('invitation',function(){
+dispatch_post('invitation', function(){
     $user = User::getInstance() or redirect('/login');
     $key=md5(time()+mt_rand());
     $new_inv = Model::factory('Invitation')->create();
