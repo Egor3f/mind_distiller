@@ -20,6 +20,8 @@
 	<ul id="main-menu">
             <li><a href="<?=url_for('')?>">Главная</a></li>
             <li><a href="<?=url_for('assertions')?>">Утверждения</a></li>
+            <li><a href="<?=url_for('assessments')?>">Оценки</a></li> 
+            <li><a href="<?=url_for('invitations')?>">Приглашения</a></li>
             <?if($user):?>
                 <li><a href="<?=url_for('logout')?>">Выход</a></li>
             <?else:?>
@@ -27,7 +29,7 @@
             <?endif?>
 	</ul>
     </div>
-    
+  <div class="contents">
     <? if (isset($news)):?>
         <div class="news">
             <?= $news; ?>
@@ -35,7 +37,7 @@
     <?endif?>
 
     <? if (isset($login)):?>
-        <div id="login">
+        <div class="login">
             <?= $login; ?>
         </div>
     <?endif?>
@@ -49,5 +51,5 @@
     <div id="content" width=100%>
         <?= $content; ?>
     </div>
-
+</div>
 </body>

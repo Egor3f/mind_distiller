@@ -1,3 +1,7 @@
+	.contents{
+	width: 100%;
+	height: 50%;
+	}
 	#main-menu{
 		float:center;
 		list-style: none;
@@ -41,6 +45,9 @@
 	.login{
 		
 		color: #000;
+		background: black;
+		height: 100%;
+		width: 33%;
 	}
 	.login label{
 		color: #000;
@@ -48,7 +55,7 @@
 	.latest_assertions{
 	float: right;
 	width: 33%;
-	height: 50%;
+	height: 100%;
 	}
 	.latest_assertions:hover{
 	background: grey;
