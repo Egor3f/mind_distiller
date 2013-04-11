@@ -1,13 +1,12 @@
 <form method="post" action="<?=url_for('add_assessment')?>">
-<<<<<<< HEAD
-<input type="hidden" name="assertion_id" value="<?=$assertion_id?>"><br>
+<input type="hidden" name="assertion_id" value="<?=$assertion_id?>">
 <table>
 <tr>
 <td align="right">
 Согласие:
 </td>
 <td align="left">
-<input type="range" name="assess_agree"> (от 0 до 2)<br>
+<input type="range" name="assess_agree"> (от 0 до 2)
 </td>
 </tr>
 <tr>
