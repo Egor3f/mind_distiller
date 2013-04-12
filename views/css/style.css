@@ -1,62 +1,72 @@
-	#main-menu{
-		float:center;
-		list-style: none;
-		padding: 0;
+/*НАВИГАЦИОННОЕ МЕНЮ*/
+#navigation{
+		display: table;
 		margin: 0 auto;
-		width: 100%;
-		height: 10%;
-		overflow: hidden;
-		position: relative;
-	}
-
-	#main-menu li{
-		float: left;
-		padding: 0px 20px;
-		margin: 0;
-		position: relative;	
-	}
-	#main-menu a:link{
+		
+}
+#navigation ul{
+		list-style:none;
+		text-align: center;
+}
+#navigation li{
+		display:inline;
+		text-decoration: none;
+}
+#navigation a {
 		color: #000;	
-		display: block;
-		text-align:center;
 		height: 4em;
 		width: 8m;
+		margin: 0 20px;
 		text-decoration: none;
 		line-height:4em;
-	}
-	#main-menu a:hover{
+}
+#navigation a:hover{
 		color: #000;
 		background: #e76c6c;	
-	}
-
-	.news{
+}
+/*БЛОК НОВОСТЕЙ*/
+#news{
 		float: left;
 		width: 33%;
 		height: 50%;
 		color: #000;
-	}
-	.news:hover{
+}
+#news:hover{
 	background: grey;
-	}
-	.login{
+}
+/*ЦЕНТРАЛЬНЫЙ БЛОК, ЛОГИН*/
+#login{
 		float: left;
 		color: #000;
 		height: 50%;
 		width: 33%;
-	}
+}
 	
-	.login:hover{
+#login:hover{
 	background: grey;
-	}
+}
 	
-	.login label{
+#login label{
 		color: #000;
-	}
-	.latest_assertions{
+}
+/*ПОСЛЕДНИЕ ДОБАВЛЕНИЯ*/
+#latest_assertions{
 	float: right;
 	width: 33%;
 	height: 50%;
-	}
-	.latest_assertions:hover{
+}
+#latest_assertions:hover{
 	background: grey;
-	}
+}
+
+/*ДОБАВЛЕНИЕ МНЕНИЙ*/
+#assessments td.label{
+	text-align:right;
+}
+/*ЛОГИН*/
+#login_page{
+float:center;
+}
+#login_page td.label{
+	text-align:right;
+}
