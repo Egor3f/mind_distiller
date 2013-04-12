@@ -60,3 +60,20 @@
 	.latest_assertions:hover{
 	background: grey;
 	}
+
+        #invitations-tbl {
+            width: 100%;
+            border-collapse: collapse;            
+        }
+   
+        #invitations-tbl td {
+            border-bottom: 1px solid #ddd;
+            border-left: 1px dotted #aaa;
+        }
+        #invitations-tbl th {
+            background: #ddd;
+            border-top: 1px solid #aaa;
+            border-bottom: 1px solid #aaa;
+            border-left: 1px solid #aaa;
+            border-right: 1px solid #aaa;
+        }
