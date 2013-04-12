@@ -59,6 +59,14 @@ class Invitation extends Model
 {
     public static $_table='invitations';
     public static $_id_column='invitation_id';
+
+    public function invitation_url(){
+        return url_for('accept_invitation/'.$this->invitation_key);
+    }
+
+    public function author(){
+        return $this->belongs_to('User','user_id');
+    }
 }
 
 ?>

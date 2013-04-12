@@ -124,6 +124,20 @@ dispatch_post('invitation', function(){
     redirect('/invitations');
 });
 
+dispatch_get('accept_invitation/:key',function(){
+    //TODO: если пользователь уже залогинен, нет смысла принимать приглашение
+    $key = params('key');
+    $invitation = Model::factory('Invitation')
+        ->where('invitation_key',$key)
+        ->find_one();
+    if ($invitation) {
+        set('invitation',$invitation);
+        return html('invitation.html.php');
+    } else {
+        return html('invitation_not_found.html.php');
+    }
+});
+
 run();
 
 ?>
