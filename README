@@ -19,6 +19,9 @@ Mind Distiller - открытый движок для создания и упр
 
   Idiorm database toolkit for PHP (от 05.03.2013)
   http://j4mie.github.com/idiormandparis
+  
+  PHPMailer classic email sending library for PHP (от 07.04.2013)
+  https://github.com/Synchro/PHPMailer
 
 Используемые версии серверного ПО:
 
