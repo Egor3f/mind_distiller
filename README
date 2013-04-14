@@ -22,7 +22,7 @@ Mind Distiller - открытый движок для создания и упр
 
 Используемые версии серверного ПО:
 
-  PostgreSQL 9.1
+  PostgreSQL 9.2
   PHP 5.3
   Apache 2.2
 
