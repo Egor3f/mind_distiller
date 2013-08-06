@@ -14,18 +14,11 @@ Mind Distiller - открытый движок для создания и упр
 
 Используемые фреймворки и библиотеки:
 
-  Limonade PHP framework (от 05.03.2013)
+  Limonade PHP framework (master от 06.08.2013)
   http://limonade-php.github.com
 
-  Idiorm database toolkit for PHP (от 05.03.2013)
+  Idiorm database toolkit for PHP (master от 06.08.2013)
   http://j4mie.github.com/idiormandparis
   
-  PHPMailer classic email sending library for PHP (от 07.04.2013)
+  PHPMailer classic email sending library for PHP (master от 06.08.2013)
   https://github.com/Synchro/PHPMailer
-
-Используемые версии серверного ПО:
-
-  PostgreSQL 9.2
-  PHP 5.3
-  Apache 2.2
-
