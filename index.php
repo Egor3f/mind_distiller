@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-ini_set ('display_errors', true);
+ini_set('display_errors', true);
 
 require_once 'lib/limonade.php';
 require_once 'configure.php';
@@ -9,17 +9,25 @@ require_once 'models/worker.php';
 function before()
 {
     $user = isset($_SESSION['user']) ? $_SESSION['user'] : false;
-    option('user',$user);
-    set('user',$user);
+    option('user', $user);
+    set('user', $user);
     layout('layouts/default.html.php');
 }
 
-dispatch ('login', function(){
+dispatch('blank', function(){
+    return html('blank.html.php');
+});
+
+dispatch('login', function(){
     return html('login.html.php');
 });
 
-dispatch('/', function() {
+dispatch('/', function(){
     return html('main.html.php');
+});
+
+dispatch('account', function(){
+    return html('account.html.php');
 });
 
 dispatch_post('login', function(){
@@ -48,7 +56,7 @@ dispatch('logout', function(){
 dispatch('assertions', function(){
     $user = User::getInstance() or redirect('/login');
     $assertions = $user->assertions()->find_many();
-    set('assertions',$assertions);
+    set('assertions', $assertions);
     return html('assertions.html.php');
 });
 
@@ -75,7 +83,7 @@ dispatch('assessments', function(){
 
 dispatch('add_assessment/:assertion_id', function(){
     $user = User::getInstance() or redirect('/login');
-    set('assertion_id',params('assertion_id'));
+    set('assertion_id', params('assertion_id'));
     return html('add_assessment.html.php');
 });
 
@@ -107,7 +115,7 @@ dispatch_post('add_assessment', function(){
 
 dispatch_get('invitations', function(){
     $user = User::getInstance() or redirect('/login');
-    set('invitations',$user->invitations()->find_many());
+    set('invitations', $user->invitations()->find_many());
     return html('invitations.html.php');
 });
 
@@ -125,5 +133,4 @@ dispatch_post('invitation', function(){
 });
 
 run();
-
 ?>
