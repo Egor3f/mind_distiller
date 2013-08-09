@@ -4,7 +4,7 @@ ini_set('display_errors', true);
 
 require_once 'lib/limonade.php';
 require_once 'configure.php';
-require_once 'models/worker.php';
+require_once 'models/classes.php';
 
 function before()
 {
