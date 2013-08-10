@@ -31,12 +31,12 @@
 <div id="content">
 	<div id="menu">
 		<ul>
-			<a href="<?=url_for('account')?>"><li><img src=""><br>Мой профиль</li></a><hr>
-			<a href="<?=url_for('')?>"><li><img src=""><br>Новости</li></a><hr>
-			<a href="<?=url_for('assertions')?>"><li><img src=""><br>Утверждения</li></a><hr>
-			<a href="<?=url_for('assessments')?>"><li><img src=""><br>Оценки</li></a><hr>
-			<a href="<?=url_for('authorities')?>"><li><img src=""><br>Авторитеты</li></a><hr>
-			<a href="<?=url_for('invitations')?>"><img src=""><br>Приглашения</li></a><hr>
+			<a href="<?=url_for('account')?>"><li><img src="./img/menu_account.png"><br>Мой профиль</li></a><hr>
+			<a href="<?=url_for('')?>"><li><img src="./img/menu_news.png"><br>Новости</li></a><hr>
+			<a href="<?=url_for('assertions')?>"><li><img src="./img/menu_assertions.png"><br>Утверждения</li></a><hr>
+			<a href="<?=url_for('assessments')?>"><li><img src="./img/menu_assessments.png"><br>Оценки</li></a><hr>
+			<a href="<?=url_for('authorities')?>"><li><img src="./img/menu_authorities.png"><br>Авторитеты</li></a><hr>
+			<a href="<?=url_for('invitations')?>"><li><img src="./img/menu_invitations.png"><br>Приглашения</li></a><hr>
 		</ul>
 	</div>
 	
