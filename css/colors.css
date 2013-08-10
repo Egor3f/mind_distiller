@@ -5,7 +5,13 @@ body
 
 #content #menu
 {
-	background: #DDDDDD;
+	background: #AA4444;
+}
+
+#menu a
+{
+	color: #FFFFFF;
+	text-shadow: 0px 1px #444444;
 }
 
 #container

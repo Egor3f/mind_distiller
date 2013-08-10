@@ -54,16 +54,16 @@ body
 {
 	margin: 12px auto;
 	position: relative;
-	width: 902px;
+	width: 900px;
 	height: 550px;
 }
 
 #content #menu
 {
-	width: 64px;
+	width: 99px;
 	float: left;
-	height: 548px;
-	border: 1px double;
+	height: 550px;
+	border-right: 1px solid;
 	position: relative;
 }
 
@@ -71,10 +71,9 @@ body
 {
 	position: relative;
 	float: right;
-	width: 836px;
+	width: 800px;
 	height: 100%;
 	overflow: auto;
-	color: black;
 	text-align: center;
 }
 
@@ -84,18 +83,17 @@ body
 	top: 0;
 	left: 0;
 	list-style-type: none;
-	margin: 10px 0;;
+	margin: 8px 0;
 	padding: 0;
 }
 
 #menu ul li
 {
 	display: block;
-	background: url('../img/empty.png');
+	/*background: url('../img/empty.png');*/
 	text-align: center;
-	width: 64px;
-	height: 64px;
-	margin: 4px 0;
+	width: 99px;
+	height: 48px;
 	padding: 0;		
 }
 
