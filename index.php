@@ -55,6 +55,13 @@ dispatch('logout', function(){
 
 dispatch('assertions', function(){
     $user = User::getInstance() or redirect('/login');
+    $assertions = Model::factory('Assertion')->where_gt('assertion_id', 1)->find_many(); // Пропускаем NULL-овое с id=1
+    set('assertions', $assertions);
+    return html('assertions.html.php');
+});
+
+dispatch('assertions_current', function(){
+    $user = User::getInstance() or redirect('/login');
     $assertions = $user->assertions()->find_many();
     set('assertions', $assertions);
     return html('assertions.html.php');
@@ -75,6 +82,14 @@ dispatch_post('add_assertion', function(){
 });
 
 dispatch('assessments', function(){
+    $user = User::getInstance() or redirect('/login');
+    $assessments = Model::factory('Assessment')->find_many();
+    set('assessments', $assessments);
+    set('user', $user);
+    return html('assessments.html.php');
+});
+
+dispatch('assessments_current', function(){
     $user = User::getInstance() or redirect('/login');
     set('assessments', $user->assessments()->find_many());
     set('user', $user);
