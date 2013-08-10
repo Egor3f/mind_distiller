@@ -35,7 +35,7 @@
 			<a href="<?=url_for('')?>"><li><img src=""><br>Новости</li></a><hr>
 			<a href="<?=url_for('assertions')?>"><li><img src=""><br>Утверждения</li></a><hr>
 			<a href="<?=url_for('assessments')?>"><li><img src=""><br>Оценки</li></a><hr>
-			<a href="<?=url_for('blank')?>"><li><img src=""><br>Авторитеты</li></a><hr>
+			<a href="<?=url_for('authorities')?>"><li><img src=""><br>Авторитеты</li></a><hr>
 			<a href="<?=url_for('invitations')?>"><img src=""><br>Приглашения</li></a><hr>
 		</ul>
 	</div>

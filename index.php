@@ -15,6 +15,7 @@ function before()
 }
 
 dispatch('authorities', function(){
+    $user = User::getInstance() or redirect('/login');
     return html('authorities.html.php');
 });
 
@@ -23,10 +24,12 @@ dispatch('login', function(){
 });
 
 dispatch('/', function(){
+    $user = User::getInstance() or redirect('/login');
     return html('main.html.php');
 });
 
 dispatch('account', function(){
+    $user = User::getInstance() or redirect('/login');
     return html('account.html.php');
 });
 

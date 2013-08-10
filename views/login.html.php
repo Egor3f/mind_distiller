@@ -1,5 +1,5 @@
 <center>
-		<h1>Вход</h1>
+		<p>Для доступа к системе необходимо авторизоваться</p>
 		<form id="login" action="<?=url_for('login')?>" method="post">
 		<div id="login_page">
 		<table>
@@ -19,6 +19,6 @@
 					</td>
 		</table>
 		</div>
-		<input type="submit" name="submit" value="Вход" />
-		</form>
+		<input type="submit" name="submit" value="Войти" />
+		</form>		
 </center>
