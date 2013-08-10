@@ -16,7 +16,7 @@
 			<br><br>
 			<p>
 				<?if($user):?>
-				Текущий профиль | <a href="<?=url_for('logout')?>" >Выход</a>
+				<?=$user->username?> | <a href="<?=url_for('logout')?>" >Выход</a>
 				<?else:?>
 				<a href="<?=url_for('login')?>" >Вход</a>
 				<?endif?>
