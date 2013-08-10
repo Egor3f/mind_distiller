@@ -14,8 +14,8 @@ function before()
     layout('layouts/default.html.php');
 }
 
-dispatch('blank', function(){
-    return html('blank.html.php');
+dispatch('authorities', function(){
+    return html('authorities.html.php');
 });
 
 dispatch('login', function(){
