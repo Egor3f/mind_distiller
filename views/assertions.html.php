@@ -1,7 +1,7 @@
 <p><a href="<?=url_for('add_assertion')?>">Добавить утверждение</a></p>
 <?foreach($assertions as $assertion):?>
 <p>
-<span style="color:#AA0000">
+<span id="marker">
 <?=$assertion->assertion_text?>
 </span><br>
 <?$assert_author = Model::factory('User')->find_one($assertion->user_id);?>

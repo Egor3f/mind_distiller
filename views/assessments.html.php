@@ -1,14 +1,12 @@
 <?foreach($assessments as $assessment):?>
 <p>
-<span style="color:#AA0000">
+<span id="marker">
 <?$assertion = Model::factory('Assertion')->find_one($assessment->assertion_id);
   echo $assertion->assertion_text;?>
 </span><br>
 <?$assess_author = Model::factory('User')->find_one($assessment->user_id);?>
 Оценил: <?=$assess_author->username?><br>
-<b><?=($user->assess_agree[$assessment->assessment])?></b>
-</p>
-<p> 
+<b><?=($user->assess_agree[$assessment->assessment])?></b><br>
 Интерес: <?=$assessment->interest?><br>
 Важность: <?=$assessment->priority?><br>
 Постановка: <?=$assessment->tidy?><br>
