@@ -73,8 +73,13 @@ body
 	float: right;
 	width: 800px;
 	height: 100%;
-	overflow: auto;
-	text-align: center;
+	overflow: auto;	
+}
+
+#container p
+{
+	text-align: left;
+	margin: 2%;
 }
 
 #menu ul
