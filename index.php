@@ -30,6 +30,7 @@ dispatch('/', function(){
 
 dispatch('account', function(){
     $user = User::getInstance() or redirect('/login');
+    set('user', $user);    
     return html('account.html.php');
 });
 
@@ -63,7 +64,7 @@ dispatch('assertions', function(){
     return html('assertions.html.php');
 });
 
-dispatch('assertions_current', function(){
+dispatch('assertions_my', function(){
     $user = User::getInstance() or redirect('/login');
     $assertions = $user->assertions()->find_many();
     set('assertions', $assertions);
@@ -92,7 +93,7 @@ dispatch('assessments', function(){
     return html('assessments.html.php');
 });
 
-dispatch('assessments_current', function(){
+dispatch('assessments_my', function(){
     $user = User::getInstance() or redirect('/login');
     set('assessments', $user->assessments()->find_many());
     set('user', $user);
