@@ -1,4 +1,4 @@
-<a href="<?=url_for('add_assertion')?>">Добавить утверждение</a>
+<p><a href="<?=url_for('add_assertion')?>">Добавить утверждение</a></p>
 <?foreach($assertions as $assertion):?>
 <p>
 <span style="color:#AA0000">
