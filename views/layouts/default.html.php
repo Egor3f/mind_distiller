@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="./css/layout.css" />
 <link rel="stylesheet" type="text/css" href="./css/colors.css" />
+<script src="http://userapi.com/js/api/openapi.js" type="text/javascript" charset="windows-1251"></script>
 </head>
 <body>
 	

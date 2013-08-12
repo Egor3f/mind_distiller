@@ -20,5 +20,15 @@
 		</table>
 		</div>
 		<input type="submit" name="submit" value="Войти" />
-		</form>		
+		</form>
+		<br>
+		<script type="text/javascript">
+		  VK.init({
+		    apiId: 3818384
+		  });
+		</script>
+		<div id="vk_auth"></div>
+		<script type="text/javascript">
+		 VK.Widgets.Auth('vk_auth', {authUrl: '/?/loginvk'});
+		</script>
 </center>

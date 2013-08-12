@@ -4,6 +4,7 @@ ini_set('display_errors', true);
 
 require_once 'lib/limonade.php';
 require_once 'configure.php';
+require_once 'vkontakte_config.php';
 require_once 'models/classes.php';
 
 function before()
@@ -49,6 +50,39 @@ dispatch_post('login', function(){
     } else { 
         flash('Ошибка','Неправильный пароль или имя пользователя');
         redirect('/login');
+    }
+});
+
+dispatch_get('loginvk', function(){
+	$uid = $_GET['uid'];
+	$first_name = $_GET['first_name'];
+	$last_name = $_GET['last_name'];
+
+	$username = $first_name . ' ' . $last_name;
+
+	$given_hash = $_GET['hash'];
+	$computed_hash = md5( Vk::$app_id . $uid . Vk::$secret_code );
+	if ($given_hash != $computed_hash){
+		return false;
+	}
+	$user = Model::factory('User')
+        ->where('username',$username)
+        ->where('passwd',$given_hash)
+        ->find_one();
+    echo ORM::get_last_query();
+
+    if ($user) {
+    	$_SESSION['user'] = $user;
+        flash('Сообщение','Рады видеть Вас снова!');
+        redirect('/');
+    } else { 
+        $new_user = Model::factory('User')->create();
+        $new_user->username = $username;
+        $new_user->passwd = $given_hash;
+        $new_user->save();
+        $_SESSION['user'] = $new_user;
+        flash('Сообщение','Спасибо за регистрацию!');
+        redirect('/');
     }
 });
 
